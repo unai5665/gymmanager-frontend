@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { forgotPassword } from '../../services/auth'
 
 const email = ref('')
 const loading = ref(false)
@@ -14,23 +15,7 @@ async function sendResetLink() {
   error.value = ''
 
   try {
-    const res = await fetch('http://localhost:8000/api/forgotpassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email.value
-      })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      error.value = data.message || t('forgotPassword.errorSending')
-      return
-    }
+    await forgotPassword(email.value)
 
     message.value = t('forgotPassword.messageSent')
     email.value = ''

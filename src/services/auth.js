@@ -1,20 +1,46 @@
-const API_URL = 'http://localhost:8000/api'
+import { apiGet, apiPost, setToken, removeToken } from './api'
+
+export function setUser(user) {
+  localStorage.setItem('user', JSON.stringify(user))
+}
+
+export function getUser() {
+  const user = localStorage.getItem('user')
+  return user ? JSON.parse(user) : null
+}
 
 export async function login(email, password) {
-  const res = await fetch(`${API_URL}/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
+  const data = await apiPost('/login', {
+    email,
+    password
   })
 
-  const data = await res.json()
-
-  if (!res.ok) {
-    throw new Error(data.message || 'Error al iniciar sesión')
-  }
+  if (data.token) setToken(data.token)
+  if (data.user) setUser(data.user)
 
   return data
 }
+
+export async function register(userData) {
+  const data = await apiPost('/register', userData)
+
+  if (data.token) setToken(data.token)
+  if (data.user) setUser(data.user)
+
+  return data
+}
+
+export function logout() {
+  removeToken()
+  localStorage.removeItem('user')
+  window.location.href = '/login'
+}
+
+export async function forgotPassword(email) {
+  return await apiPost('/forgotpassword', { email })
+}
+
+export async function resetPassword(payload) {
+  return await apiPost('/resetpassword', payload)
+}
+

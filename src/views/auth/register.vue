@@ -1,35 +1,33 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { register as registerService, setUser } from '../../services/auth'
 
 const nombre = ref('')
 const apellido = ref('')
 const email = ref('')
 const password = ref('')
 const password_confirmation = ref('')
+const router = useRouter()
 const { t } = useI18n()
 
-async function register() {
-  const res = await fetch('http://127.0.0.1:8000/api/register', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: JSON.stringify({
+async function handleRegister() {
+  try {
+    const data = await registerService({
       nombre: nombre.value,
       apellido: apellido.value,
       email: email.value,
       password: password.value,
       password_confirmation: password_confirmation.value
     })
-  })
+    if (data.user) {
+      setUser(data.user)
+    }
 
-  const data = await res.json()
-
-  if (data.token) {
-    localStorage.setItem('token', data.token)
-    window.location.href = '/dashboard'
+    router.push('/dashboard')
+  } catch (error) {
+    alert(error.message)
   }
 }
 </script>
@@ -44,6 +42,6 @@ async function register() {
     <input v-model="password" type="password" :placeholder="t('register.passwordPlaceholder')" />
     <input v-model="password_confirmation" type="password" :placeholder="t('register.passwordConfirmationPlaceholder')" />
 
-    <button @click="register">{{ t('register.submitButton') }}</button>
+    <button @click="handleRegister">{{ t('register.submitButton') }}</button>
   </div>
 </template>

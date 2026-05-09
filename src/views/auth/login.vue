@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { login } from '../../services/auth'
+import { login, setUser } from '../../services/auth'
 
 const email = ref('')
 const password = ref('')
@@ -12,9 +12,9 @@ const { t } = useI18n()
 async function handleLogin() {
   try {
     const data = await login(email.value, password.value)
-
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('user', JSON.stringify(data.user))
+    if (data.user) {
+      setUser(data.user)
+    }
 
     router.push('/dashboard')
   } catch (error) {

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { resetPassword as resetPasswordService } from '../../services/auth'
 
 const route = useRoute()
 const router = useRouter()
@@ -23,26 +24,12 @@ async function resetPassword() {
   error.value = ''
 
   try {
-    const res = await fetch('http://localhost:8000/api/resetpassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email.value,
-        token: token,
-        password: password.value,
-        password_confirmation: password_confirmation.value
-      })
+    await resetPasswordService({
+      email: email.value,
+      token: token,
+      password: password.value,
+      password_confirmation: password_confirmation.value
     })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      error.value = data.message
-      return
-    }
 
     message.value = t('resetPassword.updatedMessage')
 

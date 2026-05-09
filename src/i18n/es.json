@@ -1,0 +1,40 @@
+{
+  "login": {
+    "title": "Iniciar sesión",
+    "emailPlaceholder": "Correo",
+    "passwordPlaceholder": "Contraseña",
+    "submitButton": "Entrar",
+    "noAccount": "¿No tienes cuenta?",
+    "registerLink": "Regístrate",
+    "forgotPasswordLink": "¿Olvidaste la contraseña?"
+  },
+  "register": {
+    "title": "Registro",
+    "firstNamePlaceholder": "Nombre",
+    "lastNamePlaceholder": "Apellido",
+    "emailPlaceholder": "Correo",
+    "passwordPlaceholder": "Contraseña",
+    "passwordConfirmationPlaceholder": "Repetir contraseña",
+    "submitButton": "Crear cuenta"
+  },
+  "forgotPassword": {
+    "title": "Recuperar contraseña",
+    "emailPlaceholder": "Introduce tu correo",
+    "sendLink": "Enviar enlace",
+    "sending": "Enviando...",
+    "messageSent": "Revisa tu correo para restablecer tu contraseña",
+    "errorSending": "Error enviando correo",
+    "serverError": "Error de conexión con el servidor",
+    "backToLogin": "Volver al la pantalla de inicio de sesión"
+  },
+  "resetPassword": {
+    "title": "Nueva contraseña",
+    "emailPlaceholder": "Correo",
+    "newPasswordPlaceholder": "Nueva contraseña",
+    "confirmPasswordPlaceholder": "Repetir contraseña",
+    "changeButton": "Cambiar contraseña",
+    "changing": "Actualizando...",
+    "updatedMessage": "Contraseña actualizada correctamente",
+    "connectionError": "Error de conexión"
+  }
+}

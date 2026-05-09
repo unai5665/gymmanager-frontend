@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { login } from '../../services/auth'
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
+const { t } = useI18n()
 
 async function handleLogin() {
   try {
@@ -23,21 +25,21 @@ async function handleLogin() {
 
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>{{ t('login.title') }}</h2>
 
-    <input v-model="email" placeholder="Correo" />
-    <input v-model="password" type="password" placeholder="Contraseña" />
+    <input v-model="email" :placeholder="t('login.emailPlaceholder')" />
+    <input v-model="password" type="password" :placeholder="t('login.passwordPlaceholder')" />
 
-    <button @click="handleLogin">Entrar</button>
+    <button @click="handleLogin">{{ t('login.submitButton') }}</button>
 
     <p>
-      ¿No tienes cuenta?
-      <router-link to="/register">Regístrate</router-link>
+      {{ t('login.noAccount') }}
+      <router-link to="/register">{{ t('login.registerLink') }}</router-link>
     </p>
 
     <p>
       <router-link to="/forgotpassword">
-        ¿Olvidaste la contraseña?
+        {{ t('login.forgotPasswordLink') }}
       </router-link>
     </p>
   </div>

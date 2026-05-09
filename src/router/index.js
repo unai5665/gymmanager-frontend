@@ -1,27 +1,32 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/auth/login.vue'
-import Dashboard from '../views/dashboardcliente.vue'
-import ForgotPassword from '../views/auth/forgotpassword.vue'
 
 const routes = [
-  { path: '/', redirect: '/login' }, // 👈 login principal
-  { path: '/login', component: Login },
+  { path: '/', redirect: '/login' },
+
   {
-    path: '/dashboard',
-    component: Dashboard,
-    meta: { requiresAuth: true }
+    path: '/login',
+    component: () => import('../views/auth/Login.vue')
   },
+
   {
     path: '/register',
-    name: 'register',
-    component: () => import('../views/auth/register.vue')  
+    component: () => import('../views/auth/Register.vue')
   },
 
-  { path: '/forgotpassword', component: ForgotPassword },
+  {
+    path: '/forgotpassword',
+    component: () => import('../views/auth/ForgotPassword.vue')
+  },
 
   {
-  path: '/resetpassword',
-  component: () => import('../views/auth/ResetPassword.vue')
+    path: '/resetpassword',
+    component: () => import('../views/auth/ResetPassword.vue')
+  },
+
+  {
+    path: '/dashboard',
+    component: () => import('../views/DashboardCliente.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -30,7 +35,7 @@ const router = createRouter({
   routes
 })
 
-// protección rutas
+// auth guard
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
 

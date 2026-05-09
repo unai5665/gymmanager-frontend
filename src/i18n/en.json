@@ -1,0 +1,40 @@
+{
+  "login": {
+    "title": "Login",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "submitButton": "Sign in",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register",
+    "forgotPasswordLink": "Forgot password?"
+  },
+  "register": {
+    "title": "Register",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "passwordConfirmationPlaceholder": "Repeat password",
+    "submitButton": "Create account"
+  },
+  "forgotPassword": {
+    "title": "Recover password",
+    "emailPlaceholder": "Enter your email",
+    "sendLink": "Send link",
+    "sending": "Sending...",
+    "messageSent": "Check your email to reset your password",
+    "errorSending": "Error sending email",
+    "serverError": "Server connection error",
+    "backToLogin": "Back to login"
+  },
+  "resetPassword": {
+    "title": "New password",
+    "emailPlaceholder": "Email",
+    "newPasswordPlaceholder": "New password",
+    "confirmPasswordPlaceholder": "Repeat password",
+    "changeButton": "Change password",
+    "changing": "Updating...",
+    "updatedMessage": "Password updated successfully",
+    "connectionError": "Connection error"
+  }
+}

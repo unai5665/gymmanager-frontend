@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const email = ref('')
 const loading = ref(false)
 const message = ref('')
 const error = ref('')
+const { t } = useI18n()
 
 async function sendResetLink() {
   loading.value = true
@@ -26,15 +28,15 @@ async function sendResetLink() {
     const data = await res.json()
 
     if (!res.ok) {
-      error.value = data.message || 'Error enviando email'
+      error.value = data.message || t('forgotPassword.errorSending')
       return
     }
 
-    message.value = 'Revisa tu correo 📩 (o logs si estás en modo local)'
+    message.value = t('forgotPassword.messageSent')
     email.value = ''
 
   } catch (err) {
-    error.value = 'Error de conexión con el servidor'
+    error.value = t('forgotPassword.serverError')
   } finally {
     loading.value = false
   }
@@ -44,19 +46,19 @@ async function sendResetLink() {
 <template>
   <div class="container">
 
-    <h2>Recuperar contraseña</h2>
+    <h2>{{ t('forgotPassword.title') }}</h2>
 
     <input
       v-model="email"
       type="email"
-      placeholder="Introduce tu email"
+      :placeholder="t('forgotPassword.emailPlaceholder')"
     />
 
     <button
       @click="sendResetLink"
       :disabled="loading"
     >
-      {{ loading ? 'Enviando...' : 'Enviar enlace' }}
+      {{ loading ? t('forgotPassword.sending') : t('forgotPassword.sendLink') }}
     </button>
 
     <p v-if="message" style="color: green">
@@ -68,7 +70,7 @@ async function sendResetLink() {
     </p>
 
     <router-link to="/login">
-      Volver al login
+      {{ t('forgotPassword.backToLogin') }}
     </router-link>
 
   </div>

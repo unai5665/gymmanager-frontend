@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const email = ref(route.query.email || '')
 const token = route.query.token || ''
@@ -42,7 +44,7 @@ async function resetPassword() {
       return
     }
 
-    message.value = 'Contraseña actualizada correctamente'
+    message.value = t('resetPassword.updatedMessage')
 
     // 👉 LOGIN AUTOMÁTICO (opcional pero PRO)
     setTimeout(() => {
@@ -50,7 +52,7 @@ async function resetPassword() {
     }, 1500)
 
   } catch (err) {
-    error.value = 'Error de conexión'
+    error.value = t('resetPassword.connectionError')
   } finally {
     loading.value = false
   }
@@ -60,24 +62,24 @@ async function resetPassword() {
 <template>
   <div>
 
-    <h2>Nueva contraseña</h2>
+    <h2>{{ t('resetPassword.title') }}</h2>
 
-    <input v-model="email" placeholder="Email" />
+    <input v-model="email" :placeholder="t('resetPassword.emailPlaceholder')" />
 
     <input
       v-model="password"
       type="password"
-      placeholder="Nueva contraseña"
+      :placeholder="t('resetPassword.newPasswordPlaceholder')"
     />
 
     <input
       v-model="password_confirmation"
       type="password"
-      placeholder="Repetir contraseña"
+      :placeholder="t('resetPassword.confirmPasswordPlaceholder')"
     />
 
     <button @click="resetPassword" :disabled="loading">
-      {{ loading ? 'Actualizando...' : 'Cambiar contraseña' }}
+      {{ loading ? t('resetPassword.changing') : t('resetPassword.changeButton') }}
     </button>
 
     <p v-if="message" style="color: green">

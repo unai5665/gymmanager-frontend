@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { setupPassword } from '../../services/auth'
 
+const email = ref('')
 const newPassword = ref('')
 const confirmPassword = ref('')
 const error = ref('')
@@ -20,7 +21,7 @@ async function handleSubmit() {
   error.value = ''
   loading.value = true
   try {
-    await setupPassword(route.params.token, newPassword.value)
+    await setupPassword(route.params.token, email.value, newPassword.value)
     router.push('/login')
   } catch (e) {
     error.value = e.message
@@ -37,6 +38,10 @@ async function handleSubmit() {
       <h1 class="auth-subtitle">{{ t('setupPassword.title') }}</h1>
 
       <form class="auth-form" @submit.prevent="handleSubmit">
+        <div class="form-group">
+          <label>{{ t('login.emailPlaceholder') }}</label>
+          <input v-model="email" type="email" :placeholder="t('login.emailPlaceholder')" required />
+        </div>
         <div class="form-group">
           <label>{{ t('setupPassword.newPasswordPlaceholder') }}</label>
           <input v-model="newPassword" type="password" :placeholder="t('setupPassword.newPasswordPlaceholder')" required />

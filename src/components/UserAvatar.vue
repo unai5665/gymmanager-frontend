@@ -8,13 +8,14 @@ const props = defineProps({
 
 function getInitials(user) {
   if (!user) return '?'
-  const name = user.name || user.email || ''
-  return name.slice(0, 2).toUpperCase()
+  const first = user.nombre?.[0] || ''
+  const last = user.apellido?.[0] || ''
+  return (first + last).toUpperCase() || user.email?.[0]?.toUpperCase() || '?'
 }
 </script>
 
 <template>
-  <div class="user-avatar" :title="user?.name || user?.email">
+  <div class="user-avatar" :title="user ? `${user.nombre} ${user.apellido}` : ''">
     {{ getInitials(user) }}
   </div>
 </template>

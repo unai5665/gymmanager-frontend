@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/admin',
     component: () => import('../layouts/AdminLayout.vue'),
-    meta: { requiresAuth: true, role: 'admin' },
+    meta: { requiresAuth: true, role: 'administrador' },
     children: [
       { path: '', redirect: 'dashboard' },
       { path: 'dashboard', component: () => import('../pages/admin/Dashboard.vue') },
@@ -36,7 +36,7 @@ const routes = [
   {
     path: '/trainer',
     component: () => import('../layouts/TrainerLayout.vue'),
-    meta: { requiresAuth: true, role: 'trainer' },
+    meta: { requiresAuth: true, role: 'entrenador' },
     children: [
       { path: '', redirect: 'dashboard' },
       { path: 'dashboard', component: () => import('../pages/trainer/Dashboard.vue') },
@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/client',
     component: () => import('../layouts/ClientLayout.vue'),
-    meta: { requiresAuth: true, role: 'client' },
+    meta: { requiresAuth: true, role: 'cliente' },
     children: [
       { path: '', redirect: 'dashboard' },
       { path: 'dashboard', component: () => import('../pages/client/Dashboard.vue') },

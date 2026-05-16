@@ -15,9 +15,9 @@ const authStore = useAuthStore()
 
 const ROLE_ROUTES = {
   superadmin: '/superadmin/dashboard',
-  admin: '/admin/dashboard',
-  trainer: '/trainer/dashboard',
-  client: '/client/dashboard',
+  administrador: '/admin/dashboard',
+  entrenador: '/trainer/dashboard',
+  cliente: '/client/dashboard',
 }
 
 async function handleLogin() {

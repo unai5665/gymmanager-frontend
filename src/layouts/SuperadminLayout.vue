@@ -3,11 +3,8 @@ import AppSidebar from '../components/AppSidebar.vue'
 import AppHeader from '../components/AppHeader.vue'
 
 const sidebarItems = [
-  { labelKey: 'nav.users', to: '/superadmin/users' },
+  { labelKey: 'nav.users',         to: '/superadmin/users' },
   { labelKey: 'nav.organizations', to: '/superadmin/organizations' },
-  { labelKey: 'nav.languages', to: '/superadmin/languages' },
-  { labelKey: 'nav.accessibility', to: '/superadmin/accessibility' },
-  { labelKey: 'nav.profile', to: '/superadmin/profile' },
 ]
 </script>
 

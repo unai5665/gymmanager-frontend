@@ -24,31 +24,118 @@
   },
   "common": {
     "loading": "Cargando...",
-    "logout": "Cerrar sesión",
-    "save": "Guardar",
-    "cancel": "Cancelar",
-    "error": "Ha ocurrido un error"
+    "logout":  "Cerrar sesión",
+    "save":    "Guardar",
+    "cancel":  "Cancelar",
+    "error":   "Ha ocurrido un error"
+  },
+  "actions": {
+    "view":        "Ver",
+    "edit":        "Editar",
+    "delete":      "Eliminar",
+    "create":      "Crear",
+    "save":        "Guardar",
+    "cancel":      "Cancelar",
+    "confirm":     "Confirmar",
+    "search":      "Buscar...",
+    "filter":      "Filtrar",
+    "openRoutine": "Abrir rutina semanal"
+  },
+  "table": {
+    "name":         "Nombre",
+    "email":        "Email",
+    "role":         "Rol",
+    "status":       "Estado",
+    "organization": "Organización",
+    "actions":      "Acciones",
+    "noResults":    "Sin resultados",
+    "loading":      "Cargando..."
+  },
+  "roles": {
+    "all":           "Todos los roles",
+    "superadmin":    "Superadmin",
+    "administrador": "Administrador",
+    "entrenador":    "Entrenador",
+    "cliente":       "Cliente"
+  },
+  "status": {
+    "all":      "Todos los estados",
+    "activo":   "Activo",
+    "inactivo": "Inactivo",
+    "activa":   "Activa",
+    "inactiva": "Inactiva"
   },
   "nav": {
-    "users": "Usuarios",
+    "users":         "Usuarios",
     "organizations": "Organizaciones",
-    "languages": "Idiomas",
+    "languages":     "Idiomas",
     "accessibility": "Accesibilidad",
-    "profile": "Perfil",
-    "clients": "Clientes",
-    "streak": "Racha",
-    "goals": "Objetivos",
-    "myRoutine": "Mi rutina"
+    "profile":       "Perfil",
+    "clients":       "Clientes",
+    "streak":        "Racha",
+    "goals":         "Objetivos",
+    "myRoutine":     "Mi rutina"
+  },
+  "users": {
+    "title":         "Usuarios",
+    "create":        "Crear usuario",
+    "edit":          "Editar usuario",
+    "delete":        "Eliminar usuario",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar este usuario?",
+    "firstName":     "Nombre",
+    "lastName":      "Apellido",
+    "phone":         "Teléfono",
+    "password":      "Contraseña",
+    "newPassword":   "Nueva contraseña (dejar vacío para no cambiar)"
+  },
+  "organizations": {
+    "title":         "Organizaciones",
+    "name":          "Nombre",
+    "create":        "Crear organización",
+    "edit":          "Editar organización",
+    "delete":        "Eliminar organización",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar esta organización?"
+  },
+  "clients": {
+    "title": "Clientes"
   },
   "dashboard": {
     "superadmin": { "title": "Panel de Superadmin" },
-    "admin": { "title": "Panel de Admin" },
-    "trainer": { "title": "Panel de Entrenador" },
-    "client": { "title": "Panel de Cliente" }
+    "admin":      { "title": "Panel de Admin" },
+    "trainer":    { "title": "Panel de Entrenador" },
+    "client": {
+      "title":      "Panel de Cliente",
+      "maxStreak":  "Racha máxima",
+      "comingSoon": "Próximamente"
+    }
+  },
+  "accessibility": {
+    "title":           "Accesibilidad",
+    "fontSize":        "Tamaño de fuente",
+    "fontSizeNormal":  "Normal",
+    "fontSizeLarge":   "Grande",
+    "contrast":        "Contraste",
+    "contrastDefault": "Por defecto",
+    "contrastHigh":    "Alto contraste"
+  },
+  "languages": {
+    "title":          "Idiomas",
+    "selectLanguage": "Seleccionar idioma",
+    "spanish":        "Español",
+    "english":        "English"
+  },
+  "profile": {
+    "title":           "Perfil",
+    "editProfile":     "Editar perfil",
+    "changePassword":  "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword":     "Nueva contraseña",
+    "savedOk":         "Perfil guardado",
+    "passwordOk":      "Contraseña actualizada"
   },
   "unauthorized": {
-    "title": "Acceso denegado",
-    "message": "No tienes permiso para ver esta página.",
+    "title":       "Acceso denegado",
+    "message":     "No tienes permiso para ver esta página.",
     "backToLogin": "Volver al inicio de sesión"
   }
 }

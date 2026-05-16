@@ -29,26 +29,113 @@
     "cancel": "Cancel",
     "error": "An error occurred"
   },
+  "actions": {
+    "view":        "View",
+    "edit":        "Edit",
+    "delete":      "Delete",
+    "create":      "Create",
+    "save":        "Save",
+    "cancel":      "Cancel",
+    "confirm":     "Confirm",
+    "search":      "Search...",
+    "filter":      "Filter",
+    "openRoutine": "Open weekly routine"
+  },
+  "table": {
+    "name":         "Name",
+    "email":        "Email",
+    "role":         "Role",
+    "status":       "Status",
+    "organization": "Organization",
+    "actions":      "Actions",
+    "noResults":    "No results found",
+    "loading":      "Loading..."
+  },
+  "roles": {
+    "all":          "All roles",
+    "superadmin":   "Superadmin",
+    "administrador":"Administrator",
+    "entrenador":   "Trainer",
+    "cliente":      "Client"
+  },
+  "status": {
+    "all":      "All statuses",
+    "activo":   "Active",
+    "inactivo": "Inactive",
+    "activa":   "Active",
+    "inactiva": "Inactive"
+  },
   "nav": {
-    "users": "Users",
-    "organizations": "Organizations",
-    "languages": "Languages",
-    "accessibility": "Accessibility",
-    "profile": "Profile",
-    "clients": "Clients",
-    "streak": "Streak",
-    "goals": "Goals",
-    "myRoutine": "My Routine"
+    "users":        "Users",
+    "organizations":"Organizations",
+    "languages":    "Languages",
+    "accessibility":"Accessibility",
+    "profile":      "Profile",
+    "clients":      "Clients",
+    "streak":       "Streak",
+    "goals":        "Goals",
+    "myRoutine":    "My Routine"
+  },
+  "users": {
+    "title":         "Users",
+    "create":        "Create user",
+    "edit":          "Edit user",
+    "delete":        "Delete user",
+    "deleteConfirm": "Are you sure you want to delete this user?",
+    "firstName":     "First name",
+    "lastName":      "Last name",
+    "phone":         "Phone",
+    "password":      "Password",
+    "newPassword":   "New password (leave blank to keep current)"
+  },
+  "organizations": {
+    "title":         "Organizations",
+    "name":          "Name",
+    "create":        "Create organization",
+    "edit":          "Edit organization",
+    "delete":        "Delete organization",
+    "deleteConfirm": "Are you sure you want to delete this organization?"
+  },
+  "clients": {
+    "title": "Clients"
   },
   "dashboard": {
     "superadmin": { "title": "Superadmin Dashboard" },
-    "admin": { "title": "Admin Dashboard" },
-    "trainer": { "title": "Trainer Dashboard" },
-    "client": { "title": "Client Dashboard" }
+    "admin":      { "title": "Admin Dashboard" },
+    "trainer":    { "title": "Trainer Dashboard" },
+    "client": {
+      "title":      "Client Dashboard",
+      "maxStreak":  "Max streak",
+      "comingSoon": "Coming soon"
+    }
+  },
+  "accessibility": {
+    "title":          "Accessibility",
+    "fontSize":       "Font size",
+    "fontSizeNormal": "Normal",
+    "fontSizeLarge":  "Large",
+    "contrast":       "Contrast",
+    "contrastDefault":"Default",
+    "contrastHigh":   "High contrast"
+  },
+  "languages": {
+    "title":          "Languages",
+    "selectLanguage": "Select language",
+    "spanish":        "Español",
+    "english":        "English"
+  },
+  "profile": {
+    "title":           "Profile",
+    "editProfile":     "Edit profile",
+    "changePassword":  "Change password",
+    "currentPassword": "Current password",
+    "newPassword":     "New password",
+    "savedOk":         "Profile saved",
+    "passwordOk":      "Password updated"
   },
   "unauthorized": {
-    "title": "Access Denied",
-    "message": "You don't have permission to view this page.",
+    "title":       "Access Denied",
+    "message":     "You don't have permission to view this page.",
     "backToLogin": "Back to login"
   }
 }

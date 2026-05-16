@@ -14,10 +14,10 @@ const { t } = useI18n()
 const authStore = useAuthStore()
 
 const ROLE_ROUTES = {
-  superadmin: '/superadmin/dashboard',
-  administrador: '/admin/dashboard',
-  entrenador: '/trainer/dashboard',
-  cliente: '/client/dashboard',
+  superadmin:   '/superadmin/users',
+  administrador: '/admin/users',
+  entrenador:   '/trainer/clients',
+  cliente:      '/client/dashboard',
 }
 
 async function handleLogin() {

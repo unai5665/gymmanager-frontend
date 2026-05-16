@@ -4,9 +4,6 @@ import AppHeader from '../components/AppHeader.vue'
 
 const sidebarItems = [
   { labelKey: 'nav.clients', to: '/trainer/clients' },
-  { labelKey: 'nav.languages', to: '/trainer/languages' },
-  { labelKey: 'nav.accessibility', to: '/trainer/accessibility' },
-  { labelKey: 'nav.profile', to: '/trainer/profile' },
 ]
 </script>
 

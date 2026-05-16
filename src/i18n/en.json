@@ -1,21 +1,10 @@
 {
   "login": {
-    "title": "Login",
+    "title": "Sign in",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "submitButton": "Sign in",
-    "noAccount": "Don't have an account?",
-    "registerLink": "Register",
-    "forgotPasswordLink": "Forgot password?"
-  },
-  "register": {
-    "title": "Register",
-    "firstNamePlaceholder": "First name",
-    "lastNamePlaceholder": "Last name",
-    "emailPlaceholder": "Email",
-    "passwordPlaceholder": "Password",
-    "passwordConfirmationPlaceholder": "Repeat password",
-    "submitButton": "Create account"
+    "forgotPasswordLink": "Forgot your password?"
   },
   "forgotPassword": {
     "title": "Recover password",
@@ -23,18 +12,43 @@
     "sendLink": "Send link",
     "sending": "Sending...",
     "messageSent": "Check your email to reset your password",
-    "errorSending": "Error sending email",
     "serverError": "Server connection error",
     "backToLogin": "Back to login"
   },
-  "resetPassword": {
-    "title": "New password",
-    "emailPlaceholder": "Email",
+  "setupPassword": {
+    "title": "Set up your password",
     "newPasswordPlaceholder": "New password",
-    "confirmPasswordPlaceholder": "Repeat password",
-    "changeButton": "Change password",
-    "changing": "Updating...",
-    "updatedMessage": "Password updated successfully",
-    "connectionError": "Connection error"
+    "confirmPasswordPlaceholder": "Confirm password",
+    "submitButton": "Set password",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "common": {
+    "loading": "Loading...",
+    "logout": "Log out",
+    "save": "Save",
+    "cancel": "Cancel",
+    "error": "An error occurred"
+  },
+  "nav": {
+    "users": "Users",
+    "organizations": "Organizations",
+    "languages": "Languages",
+    "accessibility": "Accessibility",
+    "profile": "Profile",
+    "clients": "Clients",
+    "streak": "Streak",
+    "goals": "Goals",
+    "myRoutine": "My Routine"
+  },
+  "dashboard": {
+    "superadmin": { "title": "Superadmin Dashboard" },
+    "admin": { "title": "Admin Dashboard" },
+    "trainer": { "title": "Trainer Dashboard" },
+    "client": { "title": "Client Dashboard" }
+  },
+  "unauthorized": {
+    "title": "Access Denied",
+    "message": "You don't have permission to view this page.",
+    "backToLogin": "Back to login"
   }
 }

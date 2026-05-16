@@ -4,18 +4,7 @@
     "emailPlaceholder": "Correo",
     "passwordPlaceholder": "Contraseña",
     "submitButton": "Entrar",
-    "noAccount": "¿No tienes cuenta?",
-    "registerLink": "Regístrate",
-    "forgotPasswordLink": "¿Olvidaste la contraseña?"
-  },
-  "register": {
-    "title": "Registro",
-    "firstNamePlaceholder": "Nombre",
-    "lastNamePlaceholder": "Apellido",
-    "emailPlaceholder": "Correo",
-    "passwordPlaceholder": "Contraseña",
-    "passwordConfirmationPlaceholder": "Repetir contraseña",
-    "submitButton": "Crear cuenta"
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?"
   },
   "forgotPassword": {
     "title": "Recuperar contraseña",
@@ -23,18 +12,43 @@
     "sendLink": "Enviar enlace",
     "sending": "Enviando...",
     "messageSent": "Revisa tu correo para restablecer tu contraseña",
-    "errorSending": "Error enviando correo",
     "serverError": "Error de conexión con el servidor",
-    "backToLogin": "Volver al la pantalla de inicio de sesión"
+    "backToLogin": "Volver al inicio de sesión"
   },
-  "resetPassword": {
-    "title": "Nueva contraseña",
-    "emailPlaceholder": "Correo",
+  "setupPassword": {
+    "title": "Configura tu contraseña",
     "newPasswordPlaceholder": "Nueva contraseña",
-    "confirmPasswordPlaceholder": "Repetir contraseña",
-    "changeButton": "Cambiar contraseña",
-    "changing": "Actualizando...",
-    "updatedMessage": "Contraseña actualizada correctamente",
-    "connectionError": "Error de conexión"
+    "confirmPasswordPlaceholder": "Confirmar contraseña",
+    "submitButton": "Guardar contraseña",
+    "passwordMismatch": "Las contraseñas no coinciden"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "logout": "Cerrar sesión",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "error": "Ha ocurrido un error"
+  },
+  "nav": {
+    "users": "Usuarios",
+    "organizations": "Organizaciones",
+    "languages": "Idiomas",
+    "accessibility": "Accesibilidad",
+    "profile": "Perfil",
+    "clients": "Clientes",
+    "streak": "Racha",
+    "goals": "Objetivos",
+    "myRoutine": "Mi rutina"
+  },
+  "dashboard": {
+    "superadmin": { "title": "Panel de Superadmin" },
+    "admin": { "title": "Panel de Admin" },
+    "trainer": { "title": "Panel de Entrenador" },
+    "client": { "title": "Panel de Cliente" }
+  },
+  "unauthorized": {
+    "title": "Acceso denegado",
+    "message": "No tienes permiso para ver esta página.",
+    "backToLogin": "Volver al inicio de sesión"
   }
 }

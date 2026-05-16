@@ -1,46 +1,30 @@
-import { apiGet, apiPost, setToken, removeToken } from './api'
-
-export function setUser(user) {
-  localStorage.setItem('user', JSON.stringify(user))
-}
-
-export function getUser() {
-  const user = localStorage.getItem('user')
-  return user ? JSON.parse(user) : null
-}
+import { apiPost, apiGet, setToken, removeToken } from './api'
+import { useAuthStore } from '../stores/auth'
 
 export async function login(email, password) {
-  const data = await apiPost('/login', {
-    email,
-    password
-  })
-
-  if (data.token) setToken(data.token)
-  if (data.user) setUser(data.user)
-
-  return data
-}
-
-export async function register(userData) {
-  const data = await apiPost('/register', userData)
-
-  if (data.token) setToken(data.token)
-  if (data.user) setUser(data.user)
-
+  const data = await apiPost('/login', { email, password })
+  const authStore = useAuthStore()
+  authStore.setAuth({ user: data.user, token: data.token })
   return data
 }
 
 export function logout() {
-  removeToken()
-  localStorage.removeItem('user')
-  window.location.href = '/login'
+  const authStore = useAuthStore()
+  authStore.clearAuth()
+}
+
+export async function getCurrentUser() {
+  return apiGet('/me')
+}
+
+export async function refreshToken() {
+  return apiPost('/refresh-token')
 }
 
 export async function forgotPassword(email) {
-  return await apiPost('/forgotpassword', { email })
+  return apiPost('/forgot-password', { email })
 }
 
-export async function resetPassword(payload) {
-  return await apiPost('/resetpassword', payload)
+export async function setupPassword(token, password) {
+  return apiPost('/setup-password', { token, password })
 }
-

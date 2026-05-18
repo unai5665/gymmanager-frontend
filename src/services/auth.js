@@ -25,10 +25,11 @@ export async function forgotPassword(email) {
   return apiPost('/contrasena/recuperar', { email })
 }
 
-export async function setupPassword(token, email, password) {
+export async function setupPassword(token, email, password, tipo = 'configuracion') {
   return apiPost('/contrasena/establecer', {
     token,
     email,
+    tipo,
     password,
     password_confirmation: password,
   })

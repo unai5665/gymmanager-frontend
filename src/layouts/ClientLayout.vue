@@ -2,8 +2,8 @@
 import AppSidebar from '../components/AppSidebar.vue'
 import AppHeader from '../components/AppHeader.vue'
 
-const sidebarItems = [
-  { labelKey: 'nav.streak',    to: '/client/dashboard' },
+const navItems = [
+  { labelKey: 'nav.streak',    to: '/client/racha' },
   { labelKey: 'nav.goals',     to: '/client/goals' },
   { labelKey: 'nav.myRoutine', to: '/client/routine' },
 ]
@@ -11,9 +11,9 @@ const sidebarItems = [
 
 <template>
   <div class="layout">
-    <AppSidebar :items="sidebarItems" />
+    <AppSidebar :items="[]" />
     <div class="layout-main">
-      <AppHeader />
+      <AppHeader :nav-items="navItems" />
       <main class="layout-content">
         <router-view />
       </main>

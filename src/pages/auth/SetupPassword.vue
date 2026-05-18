@@ -3,15 +3,18 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { setupPassword } from '../../services/auth'
+import PasswordInput from '../../components/PasswordInput.vue'
 
-const email = ref('')
-const newPassword = ref('')
-const confirmPassword = ref('')
-const error = ref('')
-const loading = ref(false)
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
+
+const email           = ref(route.query.email ?? '')
+const newPassword     = ref('')
+const confirmPassword = ref('')
+const error           = ref('')
+const loading         = ref(false)
+const tipo            = route.query.tipo ?? 'configuracion'
 
 async function handleSubmit() {
   if (newPassword.value !== confirmPassword.value) {
@@ -21,7 +24,7 @@ async function handleSubmit() {
   error.value = ''
   loading.value = true
   try {
-    await setupPassword(route.params.token, email.value, newPassword.value)
+    await setupPassword(route.params.token, email.value, newPassword.value, tipo)
     router.push('/login')
   } catch (e) {
     error.value = e.message
@@ -44,11 +47,11 @@ async function handleSubmit() {
         </div>
         <div class="form-group">
           <label>{{ t('setupPassword.newPasswordPlaceholder') }}</label>
-          <input v-model="newPassword" type="password" :placeholder="t('setupPassword.newPasswordPlaceholder')" required />
+          <PasswordInput v-model="newPassword" :placeholder="t('setupPassword.newPasswordPlaceholder')" required />
         </div>
         <div class="form-group">
           <label>{{ t('setupPassword.confirmPasswordPlaceholder') }}</label>
-          <input v-model="confirmPassword" type="password" :placeholder="t('setupPassword.confirmPasswordPlaceholder')" required />
+          <PasswordInput v-model="confirmPassword" :placeholder="t('setupPassword.confirmPasswordPlaceholder')" required />
         </div>
 
         <p v-if="error" class="form-error">{{ error }}</p>

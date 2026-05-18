@@ -95,7 +95,8 @@ export function useUserTable(options = {}) {
     formLoading.value = true
     formError.value = ''
     try {
-      await updateUsuario(selected.value.id, form.value)
+      const { rol, ...payload } = form.value
+      await updateUsuario(selected.value.id, payload)
       showEdit.value = false
       await load()
     } catch (e) {

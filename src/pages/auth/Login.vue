@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '../../stores/auth'
 import { login } from '../../services/auth'
+import PasswordInput from '../../components/PasswordInput.vue'
 
 const email = ref('')
 const password = ref('')
@@ -48,7 +49,7 @@ async function handleLogin() {
         </div>
         <div class="form-group">
           <label>{{ t('login.passwordPlaceholder') }}</label>
-          <input v-model="password" type="password" :placeholder="t('login.passwordPlaceholder')" required />
+          <PasswordInput v-model="password" :placeholder="t('login.passwordPlaceholder')" required />
         </div>
 
         <p v-if="error" class="form-error">{{ error }}</p>

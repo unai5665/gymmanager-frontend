@@ -150,9 +150,7 @@ function getActions(row) {
         <div class="form-row">
           <div class="form-group">
             <label>{{ t('table.role') }}</label>
-            <select v-model="u.form.value.rol" class="select-input">
-              <option v-for="r in ROLES" :key="r" :value="r">{{ t(`roles.${r}`) }}</option>
-            </select>
+            <div class="field-readonly">{{ t(`roles.${u.form.value.rol}`) }}</div>
           </div>
           <div class="form-group">
             <label>{{ t('table.organization') }}</label>

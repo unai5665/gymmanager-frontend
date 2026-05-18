@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '../../stores/auth'
 import { apiPut } from '../../services/api'
+import PasswordInput from '../../components/PasswordInput.vue'
 
 const { t } = useI18n()
 const authStore = useAuthStore()
@@ -109,15 +110,15 @@ async function handlePasswordSave() {
         <form class="settings-form" @submit.prevent="handlePasswordSave">
           <div class="form-group">
             <label>{{ t('profile.currentPassword') }}</label>
-            <input v-model="passwordForm.current_password" type="password" required />
+            <PasswordInput v-model="passwordForm.current_password" required />
           </div>
           <div class="form-group">
             <label>{{ t('profile.newPassword') }}</label>
-            <input v-model="passwordForm.password" type="password" required />
+            <PasswordInput v-model="passwordForm.password" required />
           </div>
           <div class="form-group">
             <label>{{ t('setupPassword.confirmPasswordPlaceholder') }}</label>
-            <input v-model="passwordForm.password_confirmation" type="password" required />
+            <PasswordInput v-model="passwordForm.password_confirmation" required />
           </div>
           <p v-if="errorPwd" class="form-error">{{ errorPwd }}</p>
           <p v-if="successPwd" class="form-success">{{ successPwd }}</p>

@@ -240,7 +240,7 @@
     "attended":         "Asistido",
     "missed":           "No asistido",
     "trainerAssigned":  "Asignada por",
-    "lockedDay":        "Bloqueado — asistencia ya registrada"
+    "lockedDay":        "Bloqueado"
   },
   "accessibility": {
     "title":           "Accesibilidad",

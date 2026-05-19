@@ -2013,8 +2013,10 @@ input[type='text']:focus {
 .year-mini-day--empty            { background: transparent; }
 .year-mini-day.att-dot--attended { background: var(--success); }
 .year-mini-day.att-dot--missed   { background: var(--danger); opacity: 0.8; }
+.year-mini-day.att-dot--rest     { background: var(--surface-raised); }
 .year-mini-day.att-dot--nodata   { background: var(--surface-raised); }
-.year-mini-day.att-dot--future   { background: var(--surface-raised); }
+.year-mini-day.att-dot--future   { background: transparent; }
+.year-mini-day.att-dot--pre      { background: #1a1a1a; }
 
 .year-mini-day-num {
   font-size: 8px;
@@ -2025,10 +2027,10 @@ input[type='text']:focus {
 }
 .year-mini-day.att-dot--attended .year-mini-day-num { color: #003d1f; }
 .year-mini-day.att-dot--missed   .year-mini-day-num { color: #fff; }
+.year-mini-day.att-dot--rest     .year-mini-day-num { color: var(--text-muted); }
 .year-mini-day.att-dot--nodata   .year-mini-day-num { color: var(--text-muted); }
-.year-mini-day.att-dot--future   .year-mini-day-num { color: var(--border); }
-.year-mini-day.att-dot--rest     { background: var(--border-subtle, rgba(255,255,255,0.06)); }
-.year-mini-day.att-dot--rest     .year-mini-day-num { color: var(--border); }
+.year-mini-day.att-dot--future   .year-mini-day-num { color: var(--text-muted); }
+.year-mini-day.att-dot--pre      .year-mini-day-num { color: #252525; }
 
 /* ── Favorites ───────────────────────────────────────────────────────────── */
 

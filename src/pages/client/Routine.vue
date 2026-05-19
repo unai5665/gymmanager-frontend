@@ -191,7 +191,7 @@ const grupoMusPorId = computed(() =>
 const weekAttendanceMap = computed(() => {
   const map = {}
   for (const a of weekAttendance.value) {
-    map[a.fecha_asistencia] = a.asistio
+    map[String(a.fecha_asistencia).substring(0, 10)] = a.asistio
   }
   return map
 })
@@ -226,7 +226,7 @@ const monthWeeks = computed(() => {
 const monthAttendanceMap = computed(() => {
   const map = {}
   for (const a of monthAttendance.value) {
-    map[a.fecha_asistencia] = a.asistio
+    map[String(a.fecha_asistencia).substring(0, 10)] = a.asistio
   }
   return map
 })
@@ -254,7 +254,7 @@ const weekDayNames = computed(() =>
 
 const yearAttendanceMap = computed(() => {
   const map = {}
-  for (const a of yearAttendance.value) map[a.fecha_asistencia] = a.asistio
+  for (const a of yearAttendance.value) map[String(a.fecha_asistencia).substring(0, 10)] = a.asistio
   return map
 })
 
@@ -612,22 +612,36 @@ function attDotClass(iso, map) {
 
 // Yearly heatmap uses richer logic: rest days, pre-creation blanks
 function yearDotClass(iso) {
+  // 1. Future — day hasn't arrived yet
   if (iso > todayISO) return 'att-dot--future'
+
+  // 2. Pre-creation — user didn't exist yet
   const createdAt = authStore.user?.created_at?.substring(0, 10)
-  if (createdAt && iso < createdAt) return 'att-dot--future'
-  const attended = yearAttendanceMap.value[iso]
-  if (attended === true)  return 'att-dot--attended'
-  if (attended === false) return 'att-dot--missed'
+  if (createdAt && iso < createdAt) return 'att-dot--pre'
+
+  // 3. Rest day — check type BEFORE attendance so auto-marked rest days don't show green
   const dayType = yearDayTypeMap.value[iso]
   if (dayType === 'rest') return 'att-dot--rest'
+
+  // 4. Training day — check attendance record
+  if (iso in yearAttendanceMap.value) {
+    return yearAttendanceMap.value[iso] ? 'att-dot--attended' : 'att-dot--missed'
+  }
+
+  // 5. Strictly past training day with no attendance = missed (today is excluded)
+  if (dayType === 'training' && iso < todayISO) return 'att-dot--missed'
+
+  // 6. No routine assigned for this week
   return 'att-dot--nodata'
 }
 
-// A day is locked if any attendance record exists for it (client already marked that day)
+// A day is locked if it has already passed OR has an attendance record
 function isDayLocked(diaIdx) {
   const iso = dayHeaders.value[diaIdx]?.iso
-  return iso ? iso in weekAttendanceMap.value : false
+  if (!iso) return false
+  return iso < todayISO || iso in weekAttendanceMap.value
 }
+
 
 // ── Mount ─────────────────────────────────────────────────────────────────────
 

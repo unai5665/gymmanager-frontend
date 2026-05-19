@@ -152,7 +152,7 @@ const grupoMusPorId = computed(() =>
 
 const weekAttendanceMap = computed(() => {
   const map = {}
-  for (const a of weekAttendance.value) map[a.fecha_asistencia] = a.asistio
+  for (const a of weekAttendance.value) map[String(a.fecha_asistencia).substring(0, 10)] = a.asistio
   return map
 })
 

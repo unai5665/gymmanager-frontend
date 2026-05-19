@@ -240,7 +240,7 @@
     "attended":         "Attended",
     "missed":           "Missed",
     "trainerAssigned":  "Assigned by",
-    "lockedDay":        "Locked — attendance already recorded"
+    "lockedDay":        "Locked"
   },
   "accessibility": {
     "title":          "Accessibility",

@@ -1,7 +1,8 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useUserTable } from '../../composables/useUserTable'
+import { exportarUsuarios } from '../../services/usuarios'
 import DataTable     from '../../components/DataTable.vue'
 import StatusBadge   from '../../components/StatusBadge.vue'
 import DropdownMenu  from '../../components/DropdownMenu.vue'
@@ -12,6 +13,20 @@ import ConfirmDialog from '../../components/ConfirmDialog.vue'
 
 const { t } = useI18n()
 const u = useUserTable({ showOrgFilter: false })
+
+const exporting = ref(false)
+async function exportar() {
+  exporting.value = true
+  try {
+    const params = {}
+    if (u.search.value)       params.buscar = u.search.value
+    if (u.filterRol.value)    params.rol    = u.filterRol.value
+    if (u.filterEstado.value) params.estado = u.filterEstado.value
+    await exportarUsuarios(params)
+  } finally {
+    exporting.value = false
+  }
+}
 
 const columns = computed(() => [
   { key: 'fullName', label: t('table.name') },
@@ -36,6 +51,7 @@ function getActions(row) {
   <div class="page">
     <div class="page-header">
       <h1 class="page-title">{{ t('users.title') }}</h1>
+      <button class="btn-secondary btn-sm" :disabled="exporting" @click="exportar()">{{ exporting ? t('common.loading') : t('actions.export') }}</button>
       <button class="btn-primary btn-sm" @click="u.openCreate()">+ {{ t('users.create') }}</button>
     </div>
 

@@ -1,4 +1,4 @@
-import { apiGet, apiPost, apiPut, apiDelete } from './api'
+import { apiGet, apiPost, apiPut, apiDelete, apiDownload } from './api'
 
 export function getOrganizaciones(params = {}) {
   const q = new URLSearchParams(params).toString()
@@ -15,4 +15,9 @@ export function updateOrganizacion(id, data) {
 
 export function deleteOrganizacion(id) {
   return apiDelete(`/organizaciones/${id}`)
+}
+
+export function exportarOrganizaciones(params = {}) {
+  const q = new URLSearchParams(params).toString()
+  return apiDownload(`/informes/organizaciones${q ? '?' + q : ''}`)
 }

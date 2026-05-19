@@ -1,4 +1,4 @@
-import { apiGet, apiPost, apiPut, apiDelete } from './api'
+import { apiGet, apiPost, apiPut, apiDelete, apiDownload } from './api'
 
 export function getUsuarios(params = {}) {
   const q = new URLSearchParams(params).toString()
@@ -19,4 +19,9 @@ export function updateUsuario(id, data) {
 
 export function deleteUsuario(id) {
   return apiDelete(`/usuarios/${id}`)
+}
+
+export function exportarUsuarios(params = {}) {
+  const q = new URLSearchParams(params).toString()
+  return apiDownload(`/informes/usuarios${q ? '?' + q : ''}`)
 }

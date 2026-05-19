@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { getOrganizaciones, createOrganizacion, updateOrganizacion, deleteOrganizacion } from '../../services/organizaciones'
+import { getOrganizaciones, createOrganizacion, updateOrganizacion, deleteOrganizacion, exportarOrganizaciones } from '../../services/organizaciones'
 import DataTable     from '../../components/DataTable.vue'
 import StatusBadge   from '../../components/StatusBadge.vue'
 import DropdownMenu  from '../../components/DropdownMenu.vue'
@@ -83,6 +83,19 @@ async function handleDelete() {
   catch (e) { error.value = e.message }
 }
 
+const exporting = ref(false)
+async function exportar() {
+  exporting.value = true
+  try {
+    const params = {}
+    if (search.value)       params.buscar = search.value
+    if (filterEstado.value) params.estado = filterEstado.value
+    await exportarOrganizaciones(params)
+  } finally {
+    exporting.value = false
+  }
+}
+
 function getActions(row) {
   return [
     { label: t('actions.edit'),   action: () => openEdit(row) },
@@ -95,6 +108,7 @@ function getActions(row) {
   <div class="page">
     <div class="page-header">
       <h1 class="page-title">{{ t('organizations.title') }}</h1>
+      <button class="btn-secondary btn-sm" :disabled="exporting" @click="exportar()">{{ exporting ? t('common.loading') : t('actions.export') }}</button>
       <button class="btn-primary btn-sm" @click="openCreate()">+ {{ t('organizations.create') }}</button>
     </div>
 

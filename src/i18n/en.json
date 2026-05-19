@@ -39,7 +39,8 @@
     "confirm":     "Confirm",
     "search":      "Search...",
     "filter":      "Filter",
-    "openRoutine": "Open weekly routine"
+    "openRoutine": "Open weekly routine",
+    "export":      "Export CSV"
   },
   "table": {
     "name":         "Name",

@@ -2207,6 +2207,8 @@ input[type='text']:focus {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
   .routine-grid {
     grid-template-columns: repeat(7, minmax(130px, 1fr));

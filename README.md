@@ -3,7 +3,8 @@
 > Interfaz de usuario de GymManager, una plataforma completa de gestión de gimnasios.
 > Desarrollada con **Vue 3 + Vite**.
 
-![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+![Estado](https://img.shields.io/badge/estado-en%20producción-brightgreen)
+![Deploy](https://img.shields.io/badge/deploy-https%3A%2F%2Fmy--gym--manager.com-blue)
 ![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite&logoColor=white)
 
@@ -202,6 +203,19 @@ Toda la comunicación pasa por `src/services/api.js`, que gestiona las cabeceras
 
 ## Deploy
 
+La app está desplegada en **https://my-gym-manager.com** como contenedor Docker servido por Nginx, parte del stack definido en el `docker-compose.yml` del backend.
+
+### Actualizar producción
+
+```bash
+# Desde el directorio del backend en el VPS
+./deploy.sh
+```
+
+El script hace `git pull` en ambos repos y rebuilds solo los contenedores modificados.
+
+### Build manual
+
 ```bash
 npm run build
 ```
@@ -227,7 +241,7 @@ location / {
 
 ## Estado del proyecto
 
-🟡 **En desarrollo activo**
+🟢 **En producción** — https://my-gym-manager.com
 
 - [x] Autenticación completa (login, logout, recuperación de contraseña)
 - [x] Dashboard por rol

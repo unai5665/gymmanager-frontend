@@ -26,6 +26,11 @@ function exName(nombre) {
   return te(key) ? t(key) : nombre
 }
 
+function mgName(nombre) {
+  const key = `muscleGroups.${nombre}`
+  return te(key) ? t(key) : nombre
+}
+
 function localeCode() {
   return locale.value === 'es' ? 'es-ES' : 'en-US'
 }
@@ -132,6 +137,17 @@ const filteredEjercicios = computed(() =>
   ejercicios.value.filter(e =>
     String(e.grupo_muscular_id) === String(exerciseForm.value.grupo_muscular_id)
   )
+)
+
+const gruposTraducidos = computed(() =>
+  gruposMusculares.value.map(g => ({
+    id:    g.id,
+    label: mgName(g.nombre),
+  }))
+)
+
+const grupoMusPorId = computed(() =>
+  Object.fromEntries(gruposMusculares.value.map(g => [g.id, mgName(g.nombre)]))
 )
 
 const weekAttendanceMap = computed(() => {
@@ -445,8 +461,13 @@ onMounted(async () => {
                 type="button"
                 @click="removeExercise(diaIdx, ejIdx)"
               >×</button>
-              <div v-if="ej.ejercicio?.grupo_muscular?.nombre" class="routine-exercise-group">
-                {{ ej.ejercicio.grupo_muscular.nombre }}
+              <div
+                v-if="ej.ejercicio?.grupo_muscular?.nombre || grupoMusPorId[ej.ejercicio?.grupo_muscular_id]"
+                class="routine-exercise-group"
+              >
+                {{ ej.ejercicio?.grupo_muscular?.nombre
+                    ? mgName(ej.ejercicio.grupo_muscular.nombre)
+                    : grupoMusPorId[ej.ejercicio?.grupo_muscular_id] }}
               </div>
               <div class="routine-exercise-name">{{ exName(ej.ejercicio?.nombre) }}</div>
               <div class="routine-exercise-meta">
@@ -512,7 +533,7 @@ onMounted(async () => {
           <label>{{ t('routine.selectMuscleGroup') }}</label>
           <select v-model="exerciseForm.grupo_muscular_id" class="select-input" required>
             <option value="">—</option>
-            <option v-for="g in gruposMusculares" :key="g.id" :value="g.id">{{ g.nombre }}</option>
+            <option v-for="g in gruposTraducidos" :key="g.id" :value="g.id">{{ g.label }}</option>
           </select>
         </div>
         <div class="form-group">

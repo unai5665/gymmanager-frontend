@@ -9,8 +9,8 @@ const messages = {
 }
 
 const i18n = createI18n({
-  legacy: false, // Composition API mode
-  locale: 'es',  // idioma por defecto
+  legacy: false,
+  locale: localStorage.getItem('language') || 'es',
   fallbackLocale: 'en',
   messages
 })

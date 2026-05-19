@@ -10,9 +10,11 @@ import SearchBar     from '../../components/SearchBar.vue'
 import Pagination    from '../../components/Pagination.vue'
 import Modal         from '../../components/Modal.vue'
 import ConfirmDialog from '../../components/ConfirmDialog.vue'
+import PasswordInput from '../../components/PasswordInput.vue'
 
 const { t } = useI18n()
 const u = useUserTable({ showOrgFilter: false })
+
 
 const exporting = ref(false)
 async function exportar() {
@@ -115,7 +117,7 @@ function getActions(row) {
         </div>
         <div class="form-group">
           <label>{{ t('users.password') }}</label>
-          <input v-model="u.form.value.password" type="password" required />
+          <PasswordInput v-model="u.form.value.password" required />
         </div>
         <p v-if="u.formError.value" class="form-error">{{ u.formError.value }}</p>
         <div class="modal-actions">
@@ -158,7 +160,7 @@ function getActions(row) {
         </div>
         <div class="form-group">
           <label>{{ t('users.newPassword') }}</label>
-          <input v-model="u.form.value.password" type="password" />
+          <PasswordInput v-model="u.form.value.password" />
         </div>
         <p v-if="u.formError.value" class="form-error">{{ u.formError.value }}</p>
         <div class="modal-actions">

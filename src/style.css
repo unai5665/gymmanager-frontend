@@ -1653,6 +1653,7 @@ input[type='text']:focus {
   flex-direction: column;
   gap: 8px;
   min-height: 280px;
+  max-height: 420px;
 }
 
 .routine-day--rest  { opacity: 0.6; }
@@ -1678,7 +1679,17 @@ input[type='text']:focus {
 .routine-day-badge--training { background: var(--accent-light); color: var(--accent); border-color: var(--accent-border); }
 .routine-day-badge--rest     { background: var(--surface-raised); color: var(--text-muted); border-color: var(--border); }
 
-.routine-exercises { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.routine-exercises {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
 
 .routine-exercise-card {
   background: var(--surface-raised);

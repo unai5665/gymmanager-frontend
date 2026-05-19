@@ -9,27 +9,29 @@ const { t } = useI18n()
 const router = useRouter()
 const authStore = useAuthStore()
 
-defineProps({
-  items: { type: Array, required: true },
+const props = defineProps({
+  items:      { type: Array,   required: true },
+  mobileOpen: { type: Boolean, default: false },
 })
+const emit = defineEmits(['close'])
 
 const ROLE_HOME = {
-  superadmin:   '/superadmin/users',
+  superadmin:    '/superadmin/users',
   administrador: '/admin/users',
-  entrenador:   '/trainer/clients',
-  cliente:      '/client/dashboard',
+  entrenador:    '/trainer/clients',
+  cliente:       '/client/dashboard',
 }
 
 const ROLE_PREFIX = {
-  superadmin:   '/superadmin',
+  superadmin:    '/superadmin',
   administrador: '/admin',
-  entrenador:   '/trainer',
-  cliente:      '/client',
+  entrenador:    '/trainer',
+  cliente:       '/client',
 }
 
-const homeRoute   = computed(() => ROLE_HOME[authStore.role]   || '/login')
-const rolePrefix  = computed(() => ROLE_PREFIX[authStore.role] || '')
-const user        = computed(() => authStore.user)
+const homeRoute  = computed(() => ROLE_HOME[authStore.role]  || '/login')
+const rolePrefix = computed(() => ROLE_PREFIX[authStore.role] || '')
+const user       = computed(() => authStore.user)
 
 const initials = computed(() => {
   const u = user.value
@@ -37,17 +39,17 @@ const initials = computed(() => {
   return ((u.nombre?.[0] ?? '') + (u.apellido?.[0] ?? '')).toUpperCase() || '?'
 })
 
-const profileOpen = ref(false)
+const profileOpen   = ref(false)
 const profileBtnRef = ref(null)
-const menuStyle = ref({})
+const menuStyle     = ref({})
 
 function toggleProfile() {
   if (!profileOpen.value && profileBtnRef.value) {
     const rect = profileBtnRef.value.getBoundingClientRect()
     menuStyle.value = {
       position: 'fixed',
-      bottom: (window.innerHeight - rect.bottom) + 'px',
-      left: (rect.right + 8) + 'px',
+      bottom:   (window.innerHeight - rect.bottom) + 'px',
+      left:     (rect.right + 8) + 'px',
     }
   }
   profileOpen.value = !profileOpen.value
@@ -72,19 +74,29 @@ onUnmounted(() => document.removeEventListener('click', handleOutside, true))
 
 function goTo(path) {
   profileOpen.value = false
+  emit('close')
   router.push(path)
 }
 
 async function handleLogout() {
   profileOpen.value = false
+  emit('close')
   await logout()
   router.push('/login')
 }
 </script>
 
 <template>
-  <aside class="sidebar">
-    <router-link :to="homeRoute" class="sidebar-brand">GymManager</router-link>
+  <!-- Backdrop mobile -->
+  <Transition name="backdrop">
+    <div v-if="mobileOpen" class="sidebar-overlay" @click="emit('close')" />
+  </Transition>
+
+  <aside class="sidebar" :class="{ 'sidebar--mobile-open': mobileOpen }">
+    <div class="sidebar-top-row">
+      <router-link :to="homeRoute" class="sidebar-brand" @click="emit('close')">GymManager</router-link>
+      <button class="sidebar-close-btn" @click="emit('close')" aria-label="Cerrar menú">✕</button>
+    </div>
 
     <nav class="sidebar-nav">
       <router-link
@@ -92,6 +104,7 @@ async function handleLogout() {
         :key="item.to"
         :to="item.to"
         class="sidebar-item"
+        @click="emit('close')"
       >
         {{ t(item.labelKey) }}
       </router-link>

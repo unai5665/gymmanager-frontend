@@ -2,7 +2,6 @@
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '../stores/auth'
 import UserAvatar from './UserAvatar.vue'
-// import OrganizationBadge from './OrganizationBadge.vue'
 
 const { t } = useI18n()
 const authStore = useAuthStore()
@@ -10,11 +9,15 @@ const authStore = useAuthStore()
 defineProps({
   navItems: { type: Array, default: () => [] },
 })
+const emit = defineEmits(['toggleSidebar'])
 </script>
 
 <template>
   <header class="app-header">
     <div class="header-left">
+      <button class="btn-hamburger" @click="emit('toggleSidebar')" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
       <slot name="title" />
       <nav v-if="navItems.length" class="header-nav">
         <router-link
@@ -28,7 +31,6 @@ defineProps({
       </nav>
     </div>
     <div class="header-right">
-      <!-- <OrganizationBadge v-if="authStore.organization" :organization="authStore.organization" /> -->
       <UserAvatar :user="authStore.user" />
     </div>
   </header>

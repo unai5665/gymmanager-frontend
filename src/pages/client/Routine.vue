@@ -239,6 +239,21 @@ const monthRoutineMap = computed(() => {
   return map
 })
 
+const monthDayTypeMap = computed(() => {
+  const dayNames = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo']
+  const map = {}
+  for (const rutina of monthRoutines.value) {
+    const monday = new Date(String(rutina.fecha_inicio_semana).substring(0, 10) + 'T00:00:00')
+    for (let i = 0; i < 7; i++) {
+      const d   = new Date(monday.getTime() + i * DAY_MS)
+      const iso = toISO(d)
+      const dia = rutina.dias?.find(x => x.dia_semana === dayNames[i])
+      if (dia) map[iso] = dia.es_descanso ? 'rest' : 'training'
+    }
+  }
+  return map
+})
+
 // ── Computed: monthly calendar helpers ────────────────────────────────────────
 
 const weekDayNames = computed(() =>
@@ -604,9 +619,10 @@ async function confirmApplyFavorite() {
 
 // ── Attendance dot helper ─────────────────────────────────────────────────────
 
-function attDotClass(iso, map) {
+function attDotClass(iso, map, isTraining = false) {
   if (iso in map) return map[iso] ? 'att-dot--attended' : 'att-dot--missed'
   if (iso > todayISO) return 'att-dot--future'
+  if (isTraining && iso < todayISO) return 'att-dot--missed'
   return 'att-dot--nodata'
 }
 
@@ -730,7 +746,7 @@ onMounted(async () => {
                 <span
                   v-else-if="!dia.es_descanso"
                   class="att-dot"
-                  :class="attDotClass(dayHeaders[diaIdx]?.iso, weekAttendanceMap)"
+                  :class="attDotClass(dayHeaders[diaIdx]?.iso, weekAttendanceMap, true)"
                   :title="weekAttendanceMap[dayHeaders[diaIdx]?.iso] === true
                     ? t('routine.attended')
                     : weekAttendanceMap[dayHeaders[diaIdx]?.iso] === false
@@ -870,7 +886,7 @@ onMounted(async () => {
             <span class="month-cal-day-num">{{ day.date.getDate() }}</span>
             <span
               class="att-dot"
-              :class="!day.inMonth ? 'att-dot--future' : attDotClass(day.iso, monthAttendanceMap)"
+              :class="!day.inMonth ? 'att-dot--future' : attDotClass(day.iso, monthAttendanceMap, monthDayTypeMap[day.iso] === 'training')"
             />
           </div>
         </div>

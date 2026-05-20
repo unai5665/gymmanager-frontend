@@ -59,14 +59,18 @@ function getActions(row) {
 
     <div class="filters-bar">
       <SearchBar @search="u.onSearch" />
-      <select v-model="u.filterRol.value" class="select-input" @change="u.load()">
-        <option value="">{{ t('roles.all') }}</option>
-        <option v-for="r in ROLES" :key="r" :value="r">{{ t(`roles.${r}`) }}</option>
-      </select>
-      <select v-model="u.filterEstado.value" class="select-input" @change="u.load()">
-        <option value="">{{ t('status.all') }}</option>
-        <option v-for="s in ESTADOS" :key="s" :value="s">{{ t(`status.${s}`) }}</option>
-      </select>
+      <div class="select-wrap">
+        <select v-model="u.filterRol.value" class="select-input" @change="u.load()">
+          <option value="">{{ t('roles.all') }}</option>
+          <option v-for="r in ROLES" :key="r" :value="r">{{ t(`roles.${r}`) }}</option>
+        </select>
+      </div>
+      <div class="select-wrap">
+        <select v-model="u.filterEstado.value" class="select-input" @change="u.load()">
+          <option value="">{{ t('status.all') }}</option>
+          <option v-for="s in ESTADOS" :key="s" :value="s">{{ t(`status.${s}`) }}</option>
+        </select>
+      </div>
     </div>
 
     <p v-if="u.error.value" class="form-error" style="margin-bottom:16px">{{ u.error.value }}</p>

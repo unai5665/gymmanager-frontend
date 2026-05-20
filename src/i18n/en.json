@@ -92,6 +92,7 @@
   "organizations": {
     "title":         "Organizations",
     "name":          "Name",
+    "users":         "Users",
     "create":        "Create organization",
     "edit":          "Edit organization",
     "delete":        "Delete organization",

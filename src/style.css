@@ -695,6 +695,7 @@ input[type='text']:focus {
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
+.filters-bar .select-input { width: auto; }
 
 /* ===== SELECT ===== */
 
@@ -711,6 +712,12 @@ input[type='text']:focus {
   transition: border-color 0.12s;
 }
 .select-input:focus { border-color: var(--accent-border); }
+
+.select-wrap {
+  display: inline-block;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
 
 /* ===== SEARCH BAR ===== */
 

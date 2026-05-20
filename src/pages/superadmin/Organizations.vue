@@ -33,9 +33,10 @@ const form = ref(emptyForm())
 const ESTADOS = ['activa', 'inactiva']
 
 const columns = computed(() => [
-  { key: 'nombre',  label: t('organizations.name') },
-  { key: 'estado',  label: t('table.status') },
-  { key: 'actions', label: '' },
+  { key: 'nombre',          label: t('organizations.name') },
+  { key: 'usuarios_count',  label: t('organizations.users') },
+  { key: 'estado',          label: t('table.status') },
+  { key: 'actions',         label: '' },
 ])
 
 async function load() {
@@ -114,10 +115,12 @@ function getActions(row) {
 
     <div class="filters-bar">
       <SearchBar @search="onSearch" />
-      <select v-model="filterEstado" class="select-input" @change="load()">
-        <option value="">{{ t('status.all') }}</option>
-        <option v-for="s in ESTADOS" :key="s" :value="s">{{ t(`status.${s}`) }}</option>
-      </select>
+      <div class="select-wrap">
+        <select v-model="filterEstado" class="select-input" @change="load()">
+          <option value="">{{ t('status.all') }}</option>
+          <option v-for="s in ESTADOS" :key="s" :value="s">{{ t(`status.${s}`) }}</option>
+        </select>
+      </div>
     </div>
 
     <p v-if="error" class="form-error" style="margin-bottom:16px">{{ error }}</p>

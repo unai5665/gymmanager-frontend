@@ -69,7 +69,7 @@ function formatDate(str) {
 
 function daysUntil(dateStr) {
   if (!dateStr) return 0
-  const [y, m, d] = dateStr.split('-').map(Number)
+  const [y, m, d] = dateStr.split(/[-T]/).map(Number)
   const target = new Date(y, m - 1, d)
   const today  = new Date(); today.setHours(0, 0, 0, 0)
   return Math.max(0, Math.ceil((target - today) / 86400000))

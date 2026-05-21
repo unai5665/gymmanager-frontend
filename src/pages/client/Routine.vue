@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Modal from '../../components/Modal.vue'
 import {
@@ -620,29 +620,31 @@ async function confirmApplyFavorite() {
 // ── Attendance dot helper ─────────────────────────────────────────────────────
 
 function attDotClass(iso, map, isTraining = false) {
+  const createdAt = authStore.user?.created_at?.substring(0, 10)
+  if (createdAt && iso < createdAt) return null
   if (iso in map) return map[iso] ? 'att-dot--attended' : 'att-dot--missed'
-  if (iso > todayISO) return 'att-dot--future'
-  if (isTraining && iso < todayISO) return 'att-dot--missed'
+  if (iso >= todayISO) return 'att-dot--future'
+  if (isTraining) return 'att-dot--missed'
   return 'att-dot--nodata'
 }
 
 // Yearly heatmap uses richer logic: rest days, pre-creation blanks
 function yearDotClass(iso) {
-  // 1. Future — day hasn't arrived yet
-  if (iso > todayISO) return 'att-dot--future'
-
-  // 2. Pre-creation — user didn't exist yet
+  // 1. Pre-creation — user didn't exist yet
   const createdAt = authStore.user?.created_at?.substring(0, 10)
   if (createdAt && iso < createdAt) return 'att-dot--pre'
 
-  // 3. Rest day — check type BEFORE attendance so auto-marked rest days don't show green
-  const dayType = yearDayTypeMap.value[iso]
-  if (dayType === 'rest') return 'att-dot--rest'
-
-  // 4. Training day — check attendance record
+  // 2. Attendance record takes priority (evaluar:diaria can create records for future dates)
   if (iso in yearAttendanceMap.value) {
     return yearAttendanceMap.value[iso] ? 'att-dot--attended' : 'att-dot--missed'
   }
+
+  // 3. Future with no record — day hasn't arrived yet
+  if (iso > todayISO) return 'att-dot--future'
+
+  // 4. Rest day
+  const dayType = yearDayTypeMap.value[iso]
+  if (dayType === 'rest') return 'att-dot--rest'
 
   // 5. Strictly past training day with no attendance = missed (today is excluded)
   if (dayType === 'training' && iso < todayISO) return 'att-dot--missed'
@@ -661,6 +663,10 @@ function isDayLocked(diaIdx) {
 
 // ── Mount ─────────────────────────────────────────────────────────────────────
 
+function handlePageVisible() {
+  if (document.visibilityState === 'visible') dispatchLoad()
+}
+
 onMounted(async () => {
   await loadWeek()
   ;[gruposMusculares.value, ejercicios.value, favorites.value] = await Promise.all([
@@ -668,6 +674,11 @@ onMounted(async () => {
     getEjercicios(),
     getFavoritas(),
   ])
+  document.addEventListener('visibilitychange', handlePageVisible)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', handlePageVisible)
 })
 </script>
 
@@ -744,7 +755,7 @@ onMounted(async () => {
                 >🔒</span>
                 <!-- Attendance dot (view mode) -->
                 <span
-                  v-else-if="!dia.es_descanso"
+                  v-else-if="!dia.es_descanso && attDotClass(dayHeaders[diaIdx]?.iso, weekAttendanceMap, true) !== null"
                   class="att-dot"
                   :class="attDotClass(dayHeaders[diaIdx]?.iso, weekAttendanceMap, true)"
                   :title="weekAttendanceMap[dayHeaders[diaIdx]?.iso] === true
@@ -885,6 +896,7 @@ onMounted(async () => {
           >
             <span class="month-cal-day-num">{{ day.date.getDate() }}</span>
             <span
+              v-if="!day.inMonth || attDotClass(day.iso, monthAttendanceMap, monthDayTypeMap[day.iso] === 'training') !== null"
               class="att-dot"
               :class="!day.inMonth ? 'att-dot--future' : attDotClass(day.iso, monthAttendanceMap, monthDayTypeMap[day.iso] === 'training')"
             />

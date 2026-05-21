@@ -88,7 +88,7 @@ function getActions(row) {
       <template #cell-estado="{ value }"><StatusBadge :status="value" /></template>
       <template #cell-organizacion="{ row }">{{ row.organizacion?.nombre ?? '—' }}</template>
       <template #cell-rol="{ value }">{{ t(`roles.${value}`) }}</template>
-      <template #cell-actions="{ row }"><DropdownMenu :items="getActions(row)" /></template>
+<template #cell-actions="{ row }"><DropdownMenu :items="getActions(row)" /></template>
     </DataTable>
 
     <Pagination :current-page="u.page.value" :last-page="u.lastPage.value" @change="u.onPage" />

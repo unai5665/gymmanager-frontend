@@ -79,7 +79,7 @@ function getActions(row) {
       <template #cell-fullName="{ row }">{{ row.nombre }} {{ row.apellido }}</template>
       <template #cell-estado="{ value }"><StatusBadge :status="value" /></template>
       <template #cell-rol="{ value }">{{ t(`roles.${value}`) }}</template>
-      <template #cell-actions="{ row }"><DropdownMenu :items="getActions(row)" /></template>
+<template #cell-actions="{ row }"><DropdownMenu :items="getActions(row)" /></template>
     </DataTable>
 
     <Pagination :current-page="u.page.value" :last-page="u.lastPage.value" @change="u.onPage" />

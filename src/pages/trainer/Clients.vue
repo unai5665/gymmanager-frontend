@@ -16,12 +16,12 @@ const router = useRouter()
 const u      = useUserTable({ showOrgFilter: false })
 
 const columns = computed(() => [
-  { key: 'fullName',        label: t('table.name') },
-  { key: 'email',           label: t('table.email') },
-  { key: 'estado',          label: t('table.status') },
-  { key: 'racha_actual',    label: t('clients.currentStreak') },
-  { key: 'ultima_asistencia', label: t('clients.lastAttendance') },
-  { key: 'actions',         label: '' },
+  { key: 'fullName', label: t('table.name') },
+  { key: 'email',    label: t('table.email') },
+  { key: 'estado',   label: t('table.status') },
+  // { key: 'racha_actual',      label: t('clients.currentStreak') },
+  // { key: 'ultima_asistencia', label: t('clients.lastAttendance') },
+  { key: 'actions',  label: '' },
 ])
 
 // Attendance modal
@@ -56,7 +56,7 @@ async function onAttendancePage(p) {
 
 function formatDate(str) {
   if (!str) return '—'
-  const [y, m, d] = str.split('-').map(Number)
+  const [y, m, d] = str.split(/[-T]/).map(Number)
   return new Date(y, m - 1, d).toLocaleDateString('es-ES', {
     day: 'numeric', month: 'short', year: 'numeric',
   })

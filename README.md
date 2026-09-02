@@ -1,54 +1,54 @@
 # GymManager — Frontend
 
-> Interfaz de usuario de GymManager, una plataforma completa de gestión de gimnasios.
-> Desarrollada con **Vue 3 + Vite**.
+> User interface for GymManager, a complete gym management platform.
+> Built with **Vue 3 + Vite**.
 
-![Estado](https://img.shields.io/badge/estado-en%20producción-brightgreen)
+![Status](https://img.shields.io/badge/status-production-brightgreen)
 ![Deploy](https://img.shields.io/badge/deploy-https%3A%2F%2Fmy--gym--manager.com-blue)
-![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vue.js&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vue.js\&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite\&logoColor=white)
 
 ---
 
-## Descripción
+## Overview
 
-GymManager Frontend es la capa de presentación de un sistema de gestión de gimnasios. Permite a los clientes consultar sus rutinas semanales, registrar asistencia diaria y hacer seguimiento de su racha de entrenamiento. Los entrenadores pueden asignar y editar rutinas de sus clientes. Los administradores gestionan usuarios y organizaciones desde paneles dedicados.
+GymManager Frontend is the presentation layer of a gym management system. It allows clients to view their weekly workout routines, track daily attendance, and monitor their training streaks. Trainers can assign and edit their clients' routines, while administrators can manage users and organizations through dedicated dashboards.
 
-La app es completamente **responsive**, soporta **dos idiomas** (español / inglés) y tiene opciones de **accesibilidad** (tamaño de fuente y contraste alto).
-
----
-
-## Tecnologías
-
-| Tecnología | Versión | Uso |
-|---|---|---|
-| [Vue 3](https://vuejs.org/) | 3.x | Framework reactivo — Composition API |
-| [Vite](https://vitejs.dev/) | 6.x | Bundler y servidor de desarrollo |
-| [Vue Router](https://router.vuejs.org/) | 4.x | Enrutamiento SPA con guards por rol |
-| [Pinia](https://pinia.vuejs.org/) | 2.x | State management (auth + UI) |
-| [Vue i18n](https://vue-i18n.intlify.dev/) | 9.x | Internacionalización (ES / EN) |
-| Fetch API | — | Comunicación con la API REST |
+The application is fully **responsive**, supports **two languages** (Spanish / English), and includes **accessibility options** such as font size adjustment and high-contrast mode.
 
 ---
 
-## Roles y funcionalidades
+## Technologies
 
-La aplicación tiene cuatro roles, cada uno con su propio layout y navegación:
-
-| Rol | Funcionalidades |
-|---|---|
-| `superadmin` | Gestión completa de usuarios y organizaciones, exportación CSV |
-| `administrador` | Gestión de usuarios de su organización, exportación CSV |
-| `entrenador` | Visualización de clientes, asignación y edición de rutinas semanales |
-| `cliente` | Dashboard diario, rutinas (semana / mes / año), racha, protectores, objetivos |
+| Technology                                | Version | Usage                                    |
+| ----------------------------------------- | ------- | ---------------------------------------- |
+| [Vue 3](https://vuejs.org/)               | 3.x     | Reactive framework — Composition API     |
+| [Vite](https://vitejs.dev/)               | 6.x     | Build tool and development server        |
+| [Vue Router](https://router.vuejs.org/)   | 4.x     | SPA routing with role-based route guards |
+| [Pinia](https://pinia.vuejs.org/)         | 2.x     | State management (auth + UI)             |
+| [Vue I18n](https://vue-i18n.intlify.dev/) | 9.x     | Internationalization (ES / EN)           |
+| Fetch API                                 | —       | REST API communication                   |
 
 ---
 
-## Estructura de carpetas
+## Roles & Features
 
-```
+The application has four roles, each with its own layout and navigation:
+
+| Role            | Features                                                                           |
+| --------------- | ---------------------------------------------------------------------------------- |
+| `superadmin`    | Full user and organization management, CSV export                                  |
+| `administrator` | User management within their organization, CSV export                              |
+| `trainer`       | Client management, assignment and editing of weekly routines                       |
+| `client`        | Daily dashboard, routines (week / month / year), streaks, streak protectors, goals |
+
+---
+
+## Project Structure
+
+```text
 src/
-├── components/          # Componentes reutilizables
+├── components/          # Reusable components
 │   ├── Modal.vue
 │   ├── DataTable.vue
 │   ├── Pagination.vue
@@ -56,29 +56,29 @@ src/
 │   ├── DropdownMenu.vue
 │   └── …
 ├── composables/
-│   └── useUserTable.js  # Lógica de tabla de usuarios (búsqueda, paginación, CRUD)
+│   └── useUserTable.js  # User table logic (search, pagination, CRUD)
 ├── i18n/
-│   ├── index.js         # Configuración Vue i18n con idioma persistido en localStorage
-│   ├── es.json          # Traducciones en español
-│   └── en.json          # Traducciones en inglés
-├── layouts/             # Layouts por rol
+│   ├── index.js         # Vue I18n configuration with localStorage persistence
+│   ├── es.json          # Spanish translations
+│   └── en.json          # English translations
+├── layouts/             # Role-specific layouts
 │   ├── SuperadminLayout.vue
 │   ├── AdminLayout.vue
 │   ├── TrainerLayout.vue
 │   └── ClientLayout.vue
 ├── pages/
 │   ├── auth/            # Login, ForgotPassword, SetupPassword
-│   ├── shared/          # Profile, Language, Accessibility (todos los roles)
+│   ├── shared/          # Profile, Language, Accessibility (all roles)
 │   ├── superadmin/      # Dashboard, Users, Organizations
 │   ├── admin/           # Dashboard, Users
 │   ├── trainer/         # Dashboard, Clients, ClientRoutine
-│   └── client/          # Dashboard, Routine, Racha, Goals
+│   └── client/          # Dashboard, Routine, Streak, Goals
 ├── router/
-│   └── index.js         # Rutas + guard global de autenticación y rol
+│   └── index.js         # Routes + global authentication and role guard
 ├── services/
-│   ├── api.js           # Wrapper base (apiGet, apiPost, apiPut, apiDelete, apiDownload)
-│   ├── auth.js          # Login, logout, usuario actual, recuperación de contraseña
-│   ├── rutinas.js       # Rutinas semanales y rango
+│   ├── api.js           # Base wrapper (apiGet, apiPost, apiPut, apiDelete, apiDownload)
+│   ├── auth.js          # Login, logout, current user, password recovery
+│   ├── rutinas.js       # Weekly and date-range routines
 │   ├── rutinasFavoritas.js
 │   ├── asistencias.js
 │   ├── objetivos.js
@@ -86,145 +86,146 @@ src/
 │   ├── organizaciones.js
 │   └── dashboard.js
 ├── stores/
-│   ├── auth.js          # Token, usuario autenticado, rol activo
-│   └── ui.js            # Idioma, tamaño de fuente, contraste alto
-└── style.css            # Estilos globales (tema oscuro con CSS custom properties)
+│   ├── auth.js          # Token, authenticated user, active role
+│   └── ui.js            # Language, font size, high contrast
+└── style.css            # Global styles (dark theme with CSS custom properties)
 ```
 
 ---
 
-## Variables de entorno
+## Environment Variables
 
-Crea un archivo `.env` en la raíz del proyecto:
+Create a `.env` file in the project root:
 
 ```env
 VITE_API_URL=http://localhost:8000/api
 ```
 
-> Si la variable no está definida, el servicio usa `http://localhost:8000/api` por defecto.
+> If the variable is not defined, the service uses `http://localhost:8000/api` by default.
 
 ---
 
-## Instalación y ejecución
+## Installation & Usage
 
-### Requisitos
+### Requirements
 
-- Node.js >= 18
-- El backend de GymManager corriendo en local (ver [gymmanager-backend](https://github.com/unai5665/gymmanager-backend))
+* Node.js >= 18
+* GymManager backend running locally (see [gymmanager-backend](https://github.com/unai5665/gymmanager-backend))
 
-### Pasos
+### Setup
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone the repository
 git clone https://github.com/unai5665/gymmanager-frontend.git
 cd gymmanager-frontend
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 npm install
 
-# 3. Configurar el entorno
+# 3. Configure the environment
 cp .env.example .env
-# Editar VITE_API_URL si el backend no corre en :8000
+# Edit VITE_API_URL if the backend is not running on :8000
 
-# 4. Iniciar el servidor de desarrollo
+# 4. Start the development server
 npm run dev
 ```
 
-La app estará disponible en `http://localhost:5173`.
+The application will be available at `http://localhost:5173`.
 
-### Otros comandos
+### Other Commands
 
 ```bash
-npm run build    # Compilar para producción → dist/
-npm run preview  # Previsualizar el build localmente
+npm run build    # Build for production → dist/
+npm run preview  # Preview the production build locally
 ```
 
 ---
 
-## Autenticación
+## Authentication
 
-La autenticación se gestiona con **Laravel Sanctum** (tokens Bearer stateless).
+Authentication is handled using **Laravel Sanctum** with stateless Bearer tokens.
 
-1. El usuario hace login → el backend devuelve un token.
-2. El token se persiste en `localStorage` a través del store de Pinia `auth.js`.
-3. Todas las peticiones incluyen la cabecera `Authorization: Bearer <token>`.
-4. Vue Router tiene un **guard global** que redirige a `/login` si no hay sesión activa.
-5. El guard también verifica el **rol del usuario** para proteger rutas específicas.
+1. The user logs in → the backend returns an authentication token.
+2. The token is persisted in `localStorage` through the Pinia `auth.js` store.
+3. All API requests include the `Authorization: Bearer <token>` header.
+4. Vue Router uses a **global guard** to redirect unauthenticated users to `/login`.
+5. The guard also validates the user's **role** to protect role-specific routes.
 
-### Recuperación de contraseña
+### Password Recovery
 
-1. El usuario solicita un enlace en `/forgot-password`.
-2. El backend genera un token de un solo uso (24 h) y envía un email.
-3. El usuario accede al enlace y establece su nueva contraseña en `/setup-password`.
-
----
-
-## Sistema de rutinas
-
-El componente `client/Routine.vue` ofrece tres vistas de la rutina:
-
-| Vista | Descripción |
-|---|---|
-| **Semana** | Edición completa del plan semanal. Los días pasados y los días con asistencia registrada quedan bloqueados. |
-| **Mes** | Calendario mensual con indicadores de asistencia por día y tipo de semana (predeterminada / personalizada / entrenador). |
-| **Año** | Heatmap anual con 5 estados visuales (ver tabla abajo). |
-
-### Estados visuales del heatmap anual
-
-| Color | Estado |
-|---|---|
-| 🟢 Verde | Día de entrenamiento asistido |
-| 🔴 Rojo | Día de entrenamiento fallado (o sin registro) |
-| ⬛ Gris oscuro | Día de descanso |
-| ⬜ Transparente | Día futuro (aún no ha llegado) |
-| Invisible | Anterior a la creación del usuario |
+1. The user requests a recovery link at `/forgot-password`.
+2. The backend generates a single-use token valid for 24 hours and sends an email.
+3. The user follows the link and sets a new password at `/setup-password`.
 
 ---
 
-## Internacionalización
+## Workout Routine System
 
-La app soporta **español** e **inglés**. El idioma activo se persiste en `localStorage` y se restaura al recargar la página.
+The `client/Routine.vue` component provides three different routine views:
 
-- Los nombres de ejercicios y grupos musculares se traducen dinámicamente.
-- El idioma se cambia desde `Ajustes → Idioma`.
+| View      | Description                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------ |
+| **Week**  | Full weekly plan editing. Past days and days with recorded attendance are locked.                |
+| **Month** | Monthly calendar with attendance indicators and week type (default / custom / trainer-assigned). |
+| **Year**  | Annual heatmap with five visual states (see table below).                                        |
+
+### Annual Heatmap States
+
+| Color         | Status                                        |
+| ------------- | --------------------------------------------- |
+| 🟢 Green      | Completed training day                        |
+| 🔴 Red        | Missed training day (or no attendance record) |
+| ⬛ Dark gray   | Rest day                                      |
+| ⬜ Transparent | Future day (not reached yet)                  |
+| Invisible     | Date before the user was created              |
 
 ---
 
-## Conexión con el backend
+## Internationalization
 
-```
-Frontend (Vue 3)          API REST (Laravel 12)         MySQL
+The application supports **Spanish** and **English**. The active language is persisted in `localStorage` and restored when the page is reloaded.
+
+* Exercise names and muscle groups are translated dynamically.
+* The language can be changed from `Settings → Language`.
+
+---
+
+## Backend Integration
+
+```text
+Frontend (Vue 3)          REST API (Laravel 12)         MySQL
 :5173          ←──────→   :8000/api             ←──→   :3306
 ```
 
-Toda la comunicación pasa por `src/services/api.js`, que gestiona las cabeceras de autenticación y los errores de red de forma centralizada.
+All API communication goes through `src/services/api.js`, which centrally handles authentication headers and network errors.
 
 ---
 
-## Deploy
+## Deployment
 
-La app está desplegada en **https://my-gym-manager.com** como contenedor Docker servido por Nginx, parte del stack definido en el `docker-compose.yml` del backend.
+The application is deployed at **https://my-gym-manager.com** as a Docker container served by Nginx, as part of the stack defined in the backend's `docker-compose.yml`.
 
-### Actualizar producción
+### Updating Production
 
 ```bash
-# Desde el directorio del backend en el VPS
+# From the backend directory on the VPS
 ./deploy.sh
 ```
 
-El script hace `git pull` en ambos repos y rebuilds solo los contenedores modificados.
+The script performs `git pull` on both repositories and rebuilds only the modified containers.
 
-### Build manual
+### Manual Build
 
 ```bash
 npm run build
 ```
 
-El contenido de `dist/` se puede servir con cualquier servidor estático (Nginx, Apache, Vercel, Netlify…).
+The contents of `dist/` can be served using any static web server (Nginx, Apache, Vercel, Netlify, etc.).
 
-> Configura el servidor para redirigir todas las rutas a `index.html` (requerido por Vue Router en modo `history`).
+> Configure the server to redirect all routes to `index.html` (required by Vue Router when using `history` mode).
 
-**Ejemplo Nginx:**
+**Example Nginx configuration:**
+
 ```nginx
 location / {
   try_files $uri $uri/ /index.html;
@@ -233,24 +234,24 @@ location / {
 
 ---
 
-## Autor
+## Author
 
 **Unai Perez** — [github.com/unai5665](https://github.com/unai5665)
 
 ---
 
-## Estado del proyecto
+## Project Status
 
-🟢 **En producción** — https://my-gym-manager.com
+🟢 **In production** — https://my-gym-manager.com
 
-- [x] Autenticación completa (login, logout, recuperación de contraseña)
-- [x] Dashboard por rol
-- [x] Sistema de rutinas semanales (semana / mes / año)
-- [x] Registro de asistencia diaria
-- [x] Sistema de racha con protectores
-- [x] Objetivos personales
-- [x] Diseño responsive
-- [x] Internacionalización ES / EN
-- [x] Accesibilidad (tamaño de fuente, contraste alto)
-- [ ] Tests unitarios / e2e
-- [ ] PWA / notificaciones push
+* [x] Full authentication (login, logout, password recovery)
+* [x] Role-based dashboards
+* [x] Weekly routine system (week / month / year)
+* [x] Daily attendance tracking
+* [x] Training streak system with streak protectors
+* [x] Personal goals
+* [x] Responsive design
+* [x] Internationalization (ES / EN)
+* [x] Accessibility (font size, high contrast)
+* [ ] Unit / E2E tests
+* [ ] PWA / push notifications

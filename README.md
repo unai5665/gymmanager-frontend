@@ -203,14 +203,15 @@ All API communication goes through `src/services/api.js`, which centrally handle
 
 ## Deployment
 
-The application is deployed at **https://my-gym-manager.com** as a Docker container served by Nginx, as part of the stack defined in the backend's `docker-compose.yml`.
+The application has previously been deployed using **Docker and Nginx** on a VPS. The production environment is currently offline.
+
+The application can be deployed as part of the Docker stack defined in the backend's `docker-compose.yml`.
 
 ### Updating Production
 
 ```bash
 # From the backend directory on the VPS
 ./deploy.sh
-```
 
 The script performs `git pull` on both repositories and rebuilds only the modified containers.
 
@@ -242,16 +243,16 @@ location / {
 
 ## Project Status
 
-🟢 **In production** — https://my-gym-manager.com
+🟡 **Development / Production deployment currently offline**
 
-* [x] Full authentication (login, logout, password recovery)
-* [x] Role-based dashboards
-* [x] Weekly routine system (week / month / year)
-* [x] Daily attendance tracking
-* [x] Training streak system with streak protectors
-* [x] Personal goals
-* [x] Responsive design
-* [x] Internationalization (ES / EN)
-* [x] Accessibility (font size, high contrast)
-* [ ] Unit / E2E tests
-* [ ] PWA / push notifications
+- [x] Full authentication (login, logout, password recovery)
+- [x] Role-based dashboards
+- [x] Weekly routine system (week / month / year)
+- [x] Daily attendance tracking
+- [x] Training streak system with streak protectors
+- [x] Personal goals
+- [x] Responsive design
+- [x] Internationalization (ES / EN)
+- [x] Accessibility (font size, high contrast)
+- [ ] Unit / E2E tests
+- [ ] PWA / push notifications
